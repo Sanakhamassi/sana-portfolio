@@ -5,16 +5,9 @@ import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import CanvasLoader from "../Loader";
 
 const Computers = ({ isMobile }) => {
-  const { scene } = useGLTF("/desktop_pc/scene.gltf");
+  const { scene } = useGLTF(`${import.meta.env.BASE_URL}desktop_pc/scene.gltf`);
   const meshRef = useRef(); // Ref to manipulate the mesh
   const [hovered, setHovered] = useState(false); // State for hover effect
-
-  // Continuous rotation using useFrame
-  useFrame(() => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y += hovered ? 0.8 : 0.05; // Faster on hover
-    }
-  });
 
   return (
     <mesh
